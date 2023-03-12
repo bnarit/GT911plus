@@ -2,6 +2,10 @@
 # GT911
 GT911 Touch library for Arduino
 
+!!! This is Modified Version !!!
++ reset() to be public
++ init()
+
 ### This is experimental, only tested with an ESP32 & DFRobot DFR0669 TFT Touchscreen
 
 Based off these repos
