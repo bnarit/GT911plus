@@ -36,7 +36,7 @@ class GT911 {
     int8_t _intPin;
     int8_t _rstPin;
     uint8_t _addr;
-
+    uint32_t _clk;
     bool _configLoaded = false;
     GTConfig _config;
     GTInfo _info;
@@ -44,7 +44,7 @@ class GT911 {
 
     Rotate _rotation = Rotate::_0;
 
-    void reset();
+    //void reset();
     void i2cStart(uint16_t reg);
     bool write(uint16_t reg, uint8_t data);
     uint8_t read(uint16_t reg);
@@ -56,8 +56,11 @@ class GT911 {
     bool readTouchPoints();
   public:
     GT911(TwoWire *twi = &Wire);
-    bool begin(int8_t intPin = -1, int8_t rstPin = -1, uint8_t addr = GT911_I2C_ADDR_BA,
-               uint32_t clk = 400000);
+    void init(int8_t intPin = -1, int8_t rstPin = -1, uint8_t addr = GT911_I2C_ADDR_BA,uint32_t clk = 400000);
+    
+    //bool begin(int8_t intPin = -1, int8_t rstPin = -1, uint8_t addr = GT911_I2C_ADDR_BA,
+    //           uint32_t clk = 400000);
+    bool begin();
     bool productID(uint8_t *buf, uint8_t len);
     GTConfig* readConfig();
     bool writeConfig();
@@ -68,6 +71,7 @@ class GT911 {
     GTPoint *getPoints();
 
     void setRotation(Rotate rotation);
+	void reset();
 };
 
 #endif
